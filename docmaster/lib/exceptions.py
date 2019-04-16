@@ -1,0 +1,2 @@
+class DialogUnfulfilledError(Exception):
+    pass
