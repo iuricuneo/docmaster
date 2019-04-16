@@ -1,3 +1,13 @@
+"""
+Actions are given to requests in the orders to be executed.
+When an action has been handled, it is removed from the request's actions list.
+
+Not only does the abstract class Action never becomes an object, but its
+concretions also never should. Actions are always compared with as a class, e.g.
+if request.action == actions.AskAction:
+    # ask
+"""
+
 class Action:
     """The concretions of Action never become objects!"""
     pass

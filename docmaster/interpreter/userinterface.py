@@ -1,3 +1,13 @@
+"""
+User interface module.
+
+This module is responsible for receiving a user command and coordinating the
+handling of the command until its completion. Its helpers are the listener, to
+generate a request out of the command, the request handler, to handle an
+interface to the search engine and the speaker, to get user input and print
+output.
+"""
+
 import os
 
 from typing import List

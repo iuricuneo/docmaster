@@ -1,10 +1,21 @@
+"""
+Requests to be generated after user command.
+
+A request is received by the UI, which invokes the listener to generate a
+request from it. The request will then be handled by the other modules and hold
+log-sensitive data such as user options and choices.
+
+A Request interface is given, after which each concretion of a request should be
+modelled.
+"""
+
 import dialogues
 import actions as act
 
-from exceptions import DialogUnfulfilledError
-
 
 class Request:
+
+    """Abstract class Request. Will tell other modules what the user wants."""
 
     def __init__(self, filename, options):
         self.action = act.WaitForHandlingAction
@@ -32,7 +43,7 @@ class Request:
         self.dialog_list.insert(0, dialog)
 
     def get_dialog(self):
-        """Returns a dialog object."""
+        """Returns the first dialog object in the list."""
         return self.dialog_list[0]
 
     def solve_dialog(self):
@@ -53,12 +64,14 @@ class Request:
 
 
 class CreateEntryRequest(Request):
+    """Request to create file entry, user wants to save file."""
     def __init__(self, filename, options):
         super().__init__(filename, options)
         self.actions = [act.ProcessAction]
 
 
 class ReadEntryRequest(Request):
+    """Request to read file entry, user wants to get access to a file."""
     def __init__(self, filename, options):
         super().__init__(filename, options)
         self.actions = [act.SearchAction, act.ShowAction]
@@ -66,6 +79,8 @@ class ReadEntryRequest(Request):
 
 
 class UpdateEntryRequest(Request):
+    """Request to update file entry, user wants to modify a file.
+    This request can be forced with flag -f to not ask for confirmation."""
     def __init__(self, filename, options):
         super().__init__(filename, options)
         self.actions = [act.SearchAction, act.ProcessAction]
@@ -75,6 +90,8 @@ class UpdateEntryRequest(Request):
 
 
 class DeleteEntryRequest(Request):
+    """Request to delete file entry, user wants to remove a file from storage.
+    This request can be forced with flag -f to not ask for confirmation."""
     def __init__(self, filename, options):
         super().__init__(filename, options)
         self.actions = [act.SearchAction, act.ProcessAction]
@@ -84,6 +101,7 @@ class DeleteEntryRequest(Request):
 
 
 class ErrorRequest(Request):
+    """Returns an error message for unrecognized command."""
     def __init__(self, filename, options):
         super().__init__(filename, options)
         self.actions = [act.TalkAction]

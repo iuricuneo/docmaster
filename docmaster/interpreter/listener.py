@@ -1,4 +1,13 @@
 """
+Listener module.
+
+Listener is a function responsible for receiving a full user command and
+interpreting it into a request with the given options.
+
+It is a function and has a behaviour similar to the one of the speaker. To call,
+use:
+request = listener.Listener(command)
+
 Options so far are:
 v - verbose
 f - force

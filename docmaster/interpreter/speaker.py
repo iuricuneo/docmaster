@@ -1,8 +1,23 @@
+"""
+Speaker class.
+
+This class is responsible for handling communication with the user. It will ask
+a question from a dialogues.Ask object and get an answer, if any, to be recorded
+in the dialogues.Dialog object of each request. This will then be processed
+wherever it is needed.
+
+Much like the listener, it works as a function. Call with speaker.Speaker(req) .
+"""
+
 import os
 
 import actions
 
+
 class Speaker:
+    """Speaker class. Called from the user interface whenever needed to print
+    something or get user input. Received a request to handle, works pretty much
+    like a function, invoke with speaker.Speaker(request) ."""
     def __init__(self, request, results=None):
         self.request = request
         self.results = results

@@ -1,3 +1,10 @@
+#!/usr/bin/env python3
+
+"""
+docmaster __main__
+Starts the software up.
+"""
+
 import os
 import sys
 
@@ -5,7 +12,6 @@ import sys
 sys.path.append(__loader__.path.replace("/__main__.py","") + "/lib/")
 
 import interpreter.userinterface as ui
-
 
 if __name__ == '__main__':
     try:

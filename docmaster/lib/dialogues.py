@@ -1,9 +1,29 @@
+"""
+Dialogues hold the dialog structures expected by the software, it tells the
+program if it should just print something, or should print and get one kind of
+answer, or any answer.
+
+Requests hold dialogues, each request can have as many dialogues as required,
+or none.
+
+Each Dialog object has a say method, which returns an object from the Ask class.
+This object is the one to hold texts and options and default answers.
+"""
+
 from actions import AskAction
 from actions import TalkAction
 from actions import DoNothingAction
 
 
 class Ask:
+    """Ask class to hold dialog structure. Values given can be later accessed as
+    attributes of the object.
+
+    :text: str          - holds question or announcement to print
+    :options: List[str] - holds options to be given to user, or empty for none
+    :pref: str          - holds prefered option, optional, if given, must be in
+                          options
+    """
     def __init__(self, text, options, pref=None):
         assert pref is None or pref in options
         self.text = text
@@ -12,7 +32,12 @@ class Ask:
 
 
 class Dialog:
-
+    """Abstract dialog class offers an interface for dialogues to be held.
+    Dialog.hear method will add entry to history
+    Dialog.say will return an Ask with what has to be said. Should be overridden
+    in concretions.
+    Dialog.remember_last_answer will return last answer from user.
+    Dialog.history is an attribute with tuples added by Dialog.hear."""
     def __init__(self):
         self.is_fulfilled = False
         self.history = []

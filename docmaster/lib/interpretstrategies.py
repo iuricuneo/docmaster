@@ -1,8 +1,20 @@
+"""
+Interpreting strategy used by the user interface to generate its requests.
+
+A request is received by the UI, which invokes the listener to generate a
+request from it. The listener will create an instance of InterpretingStrategy
+to know which command has been received and, with the command, a child of
+InterpretingStrategy is invoked to return the request.
+
+A InterpretingStrategy interface is given, after which each concretion of a
+strategy should be modelled, but the interface can and should be used too.
+"""
+
 import os
 
 from typing import List, Tuple
 
-import requests
+import userrequests as requests
 
 KNOWN_COMMANDS = [
     "save",
@@ -56,6 +68,7 @@ class InterpretingStrategy:
 
 
 class CreateEntryStrategy(InterpretingStrategy):
+    """Strategy to create a CreateEntryRequest"""
     def get_request(self, command: List[str]): # (...) -> Request:
         """Receives the command as list of strings and returns a processed
         request.
@@ -66,6 +79,7 @@ class CreateEntryStrategy(InterpretingStrategy):
 
 
 class ReadEntryStrategy(InterpretingStrategy):
+    """Strategy to create a ReadEntryRequest"""
     def get_request(self, command: List[str]): # (...) -> Request:
         """Receives the command as list of strings and returns a processed
         request.
@@ -76,6 +90,7 @@ class ReadEntryStrategy(InterpretingStrategy):
 
 
 class UpdateEntryStrategy(InterpretingStrategy):
+    """Strategy to create an UpdateEntryRequest"""
     def get_request(self, command: List[str]): # (...) -> Request:
         """Receives the command as list of strings and returns a processed
         request.
@@ -86,6 +101,7 @@ class UpdateEntryStrategy(InterpretingStrategy):
 
 
 class DeleteEntryStrategy(InterpretingStrategy):
+    """Strategy to create a DeleteEntryRequest"""
     def get_request(self, command: List[str]): # (...) -> Request:
         """Receives the command as list of strings and returns a processed
         request.
@@ -95,6 +111,7 @@ class DeleteEntryStrategy(InterpretingStrategy):
         return self.request
 
 class ErrorStrategy(InterpretingStrategy):
+    """Strategy to create an ErrorRequest"""
     def get_request(self, command: List[str]): # (...) -> Request:
         """Receives the command as list of strings and returns a processed
         request.
