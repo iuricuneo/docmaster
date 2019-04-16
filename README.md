@@ -16,15 +16,17 @@ extended into a application with diverse uses, plus unit tests.
 
 For testing purposes, run:
 
-> cd docmaster
-> echo "test" > file.txt
-> python3 docmaster save file.txt
-> python3 docmaster save file.txt -v
-> python3 docmaster show file.txt -v
-> python3 docmaster update file.txt -v
-> python3 docmaster update file.txt -vf
-> python3 docmaster remove file.txt -v
-> python3 docmaster remove file.txt -vf
+```
+cd docmaster
+echo "test" > file.txt
+python3 docmaster save file.txt
+python3 docmaster save file.txt -v
+python3 docmaster show file.txt -v
+python3 docmaster update file.txt -v
+python3 docmaster update file.txt -vf
+python3 docmaster remove file.txt -v
+python3 docmaster remove file.txt -vf
+```
 
 Without the implementation of a file handler, nothing will be done to the file.
 
