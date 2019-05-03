@@ -19,6 +19,9 @@ class CreateCommand(Command):
     result contains True for success, False for fail.
     """
     new_file_path = ''
+    def __init__(self, file_identifier: str, file_path: str) -> None:
+        super().__init__(file_identifier)
+        self.new_file_path = file_path
 
 
 class ReadCommand(Command):
@@ -35,7 +38,8 @@ class UpdateCommand(CreateCommand):
     updated and new_file_path contains path of file to take the place.
     result contains True for success and False for fail.
     """
-    pass
+    def __init__(self, file_identifier: str, file_path: str) -> None:
+        super().__init__(file_identifier, file_path)
 
 
 class DeleteCommand(Command):
