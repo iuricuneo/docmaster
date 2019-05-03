@@ -18,11 +18,10 @@ class Speaker:
     """Speaker class. Called from the user interface whenever needed to print
     something or get user input. Received a request to handle, works pretty much
     like a function, invoke with speaker.Speaker(request) ."""
-    def __init__(self, request, results=None):
+    def __init__(self, request):
         self.request = request
-        self.results = results
         dialog = self.request.get_dialog()
-        if results is not None:
+        if request.results is not None:
             self.handle_show_action()
         elif self.request.action is actions.AskAction:
             self.handle_ask_action(dialog)
@@ -81,4 +80,8 @@ class Speaker:
         """Handles a request with show action.
         :dialog: str
         """
-        os.system('cat ' + self.results)
+        if not self.request.flags['error']:
+            os.system('cat ' + self.request.results)
+        else:
+            print("Error found processing request.")
+            print(self.request.results)

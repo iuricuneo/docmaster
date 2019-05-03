@@ -15,8 +15,8 @@ from typing import List
 import actions
 
 import interpreter.speaker as speaker
-import interpreter.listener as listener
 import interpreter.requesthandler as requesthandler
+import interpreter.listener.Listener as Listener
 
 
 class UserInterface:
@@ -24,7 +24,7 @@ class UserInterface:
     request handler to sort it out."""
     def __init__(self, command: List[str]) -> None:
         command.pop(0)
-        self.request = listener.Listener(command)
+        self.request = Listener.listen(command)
         self.handler = requesthandler.RequestHandler()
 
     def handle_request(self) -> None:
@@ -37,19 +37,11 @@ class UserInterface:
 
             if action in [
                     actions.AskAction,
-                    actions.TalkAction]:
+                    actions.TalkAction,
+                    actions.ShowAction]:
                 speaker.Speaker(self.request)
-            elif action == actions.ShowAction:
-                results = self.handler.get_search_results()
-                speaker.Speaker(self.request, results=results)
-            elif action in [actions.SearchAction, actions.ProcessAction]:
-                # Action will have been handled in next iteration
-                pass
             elif action == actions.DoNothingAction:
+                # Done
                 break
-            else:
-                raise NotImplementedError(
-                    "Should not have reached this point... "
-                    + "Something went wrong.")
-
+            # Other actions will be handled by handler here:
             action = self.handler.handle(self.request)

@@ -17,12 +17,15 @@ class Request:
 
     """Abstract class Request. Will tell other modules what the user wants."""
 
-    def __init__(self, filename, options):
+    def __init__(self, filename: str, options):
         self.action = act.WaitForHandlingAction
         self.dialog_list = [] #type: Dialog
         self.filename = filename #type: str
         self.options = options #type: list[str]
         self.actions = [] #type: list[Action]
+        self.results = None #type: Any
+        self.flags = {
+            'error': False} #type: Dict[str, bool]
 
         self.verbose = False #type: bool
         for option_stack in self.options:
@@ -36,6 +39,10 @@ class Request:
             self.action = self.actions.pop(0)
         else:
             self.action = act.DoNothingAction
+
+    def add_action(self, action):
+        """Adds action to action list, to be next solved."""
+        self.action.insert(0, action)
 
     def add_dialog(self, dialog):
         """Will add a dialog to the dialogs list

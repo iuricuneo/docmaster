@@ -37,7 +37,7 @@ class RequestHandler:
                 request._print("Cancelled by user. Exiting...")
                 continue
             request._print("Processing request...")
-            self.results = request.filename
+            self.results = request.results
             request._print("Done processing request.")
             request.update_action()
         request._print(

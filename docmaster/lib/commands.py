@@ -1,3 +1,10 @@
+"""
+Commands to be created by the search engine and sent down to file handler.
+They tell the file handler all info that it needs and get the results back up.
+Different commands require different initializations, please do pay attention.
+"""
+
+
 class Command:
     """
     Command interface created by the search engine to be sent to the file
@@ -48,3 +55,10 @@ class DeleteCommand(Command):
     and result contains True for success, or False for fail.
     """
     pass
+
+
+if __name__ == '__main__':
+    tmp = CreateCommand('1234', '/path/to/file')
+    tmp = ReadCommand('1234')
+    tmp = UpdateCommand('1234', '/path/to/file')
+    tmp = DeleteCommand('1234')

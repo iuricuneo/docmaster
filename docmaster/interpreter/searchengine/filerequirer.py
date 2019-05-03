@@ -1,3 +1,7 @@
+"""
+Class to handle creation of commands and interfacing with file handler.
+"""
+
 import commands
 import filehandler
 import userrequests as ureq
@@ -6,6 +10,8 @@ class FileRequirer:
     """
     Will receive the request upon creation and process it to create a command
     and forward to file handler. Holds instance of file handler.
+
+    FIXME: merge this in SearchEngine?
     """
     def __init__(self):
         self.req = None
