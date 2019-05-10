@@ -14,9 +14,10 @@ from typing import List
 
 import actions
 
+from interpreter.listener import Listener
+
 import interpreter.speaker as speaker
 import interpreter.requesthandler as requesthandler
-import interpreter.listener.Listener as Listener
 
 
 class UserInterface:
