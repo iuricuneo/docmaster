@@ -8,6 +8,9 @@ Will also handle some of user's input after an ask.
 import dialogues
 import actions as act
 
+import searchengine.searcher as searcher
+
+
 class RequestHandler:
     """The request handler will receive a request and decide what to do with it
     next, whether to send to the speaker, to say something or to send to the
@@ -21,6 +24,7 @@ class RequestHandler:
         """
         should_process = True
         request.update_action()
+        search_engine = searcher.Searcher(request)
         while request.action in [act.SearchAction, act.ProcessAction]:
             request._print(
                 "Action: "
@@ -37,6 +41,7 @@ class RequestHandler:
                 request._print("Cancelled by user. Exiting...")
                 continue
             request._print("Processing request...")
+            search_engine.process_request()
             self.results = request.results
             request._print("Done processing request.")
             request.update_action()

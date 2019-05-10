@@ -8,10 +8,13 @@ command to file handler in order to process a request.
 
 from typing import Dict, Any
 
+import actions
+
 import searchengine.characteristicshandler as chrh
 import searchengine.resultsmanager as resman
 
-class SearchEngine:
+
+class Searcher:
     """
     Class responsible for search and processing actions of a request. It will
     receive a request, process it as needed and, if required, send a command
@@ -36,3 +39,16 @@ class SearchEngine:
         :results: Any : Results to be passed on to the request.
         """
         self.results_manager.handle_results_filehandler(results)
+
+    def process_request(self) -> None:
+        """Will check which action request has and process it. Can be called
+        several times over the same request. Updates results on request object.
+
+        Action of the request will be updated when back on request handler.
+        """
+        if self.request.action == actions.SearchAction:
+            # handle search
+            pass
+        elif self.request.action == actions.ProcessAction:
+            # process
+            pass
