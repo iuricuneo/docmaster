@@ -6,10 +6,10 @@ interface. After processing, if direct file handling is needed, it will send a
 command to file handler in order to process a request.
 """
 
-from Typing import Dict, Any
+from typing import Dict, Any
 
 import searchengine.characteristicshandler as chrh
-import searchengine.resutlsmanager as resman
+import searchengine.resultsmanager as resman
 
 class SearchEngine:
     """
@@ -36,5 +36,3 @@ class SearchEngine:
         :results: Any : Results to be passed on to the request.
         """
         self.results_manager.handle_results_filehandler(results)
-
-    

@@ -6,7 +6,7 @@ FIXME: Is it really necessary to receive a request here? -> I think so, but idk.
 """
 import os
 
-import action
+import actions
 import dialogues
 import userrequests as ureq
 
