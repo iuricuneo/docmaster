@@ -1,6 +1,8 @@
 """
 Results manager class, responsible for handling filehandler and search results
 and making them readable for the user.
+
+FIXME: Is it really necessary to receive a request here? -> I think so, but idk.
 """
 import os
 
