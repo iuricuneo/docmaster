@@ -3,6 +3,7 @@ Request handler module.
 
 Will receive a request and handle its actions regarding processing and search.
 Will also handle some of user's input after an ask.
+TODO: use argparse
 """
 
 import dialogues
