@@ -27,13 +27,14 @@ class ResultsManager:
         self.req.results = error_string
         self.req.flags['error'] = True
 
-    def handle_search_failed(self, options) -> None:
+    def handle_search_failed(self, options=None) -> None:
         """
         If keywords were not enough to point to a specific file, then add dialog
         to ask user for more keywords.
         """
         self.req.add_action(actions.AskAction)
         self.req.add_dialog(dialogues.RefineSearchDialog())
+        self.req.add_action(actions.SearchAction)
 
     def handle_results_filehandler(self, results) -> None:
         """

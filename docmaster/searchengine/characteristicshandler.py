@@ -27,6 +27,7 @@ class CharacteristicsHandler:
             "extension": '',
             "orig_name": '',
             "entry_date": '',
+            "keywords": '', # e.g. "word1, word2, word3" to be used with "in"
             "read_last": '',
             "updated_last": ''}
 

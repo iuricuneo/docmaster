@@ -26,6 +26,7 @@ class Request:
         self.results = None #type: Any
         self.flags = {
             'error': False} #type: Dict[str, bool]
+        self.process_steps = [] #type: List[str]
 
         self.verbose = False #type: bool
         for option_stack in self.options:
@@ -75,6 +76,12 @@ class CreateEntryRequest(Request):
     def __init__(self, filename, options):
         super().__init__(filename, options)
         self.actions = [act.ProcessAction]
+        self.process_steps = [
+            "search-expect=no-results",
+            "characteristics",
+            "save",
+            "require",
+            "result"]
 
 
 class ReadEntryRequest(Request):
@@ -83,6 +90,10 @@ class ReadEntryRequest(Request):
         super().__init__(filename, options)
         self.actions = [act.SearchAction, act.ShowAction]
         self.add_dialog(dialogues.ShowResultsDialog())
+        self.process_steps = [
+            "search-expect=results",
+            "require",
+            "result"]
 
 
 class UpdateEntryRequest(Request):
@@ -94,6 +105,12 @@ class UpdateEntryRequest(Request):
         if not self._forced():
             self.actions.insert(1, act.AskAction)
             self.add_dialog(dialogues.ConfirmUpdateDialog())
+        self.process_steps = [
+            "search-expect=results",
+            "characteristics",
+            "update",
+            "require",
+            "result"]
 
 
 class DeleteEntryRequest(Request):
@@ -105,6 +122,11 @@ class DeleteEntryRequest(Request):
         if not self._forced():
             self.actions.insert(1, act.AskAction)
             self.add_dialog(dialogues.ConfirmDeleteDialog())
+        self.process_steps = [
+            "search-expect=results",
+            "delete",
+            "require",
+            "result"]
 
 
 class ErrorRequest(Request):
