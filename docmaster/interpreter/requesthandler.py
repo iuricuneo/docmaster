@@ -26,13 +26,13 @@ class RequestHandler:
         should_process = True
         request.update_action()
         search_engine = searcher.Searcher(request)
+        # Can't think of a use case when we'd do these two in a row, but
+        # since it's just change a if for a while, why not leave it there?
         while request.action in [act.SearchAction, act.ProcessAction]:
             request._print(
                 "Action: "
                 + request.action.__name__.replace(
                     "Action","."))
-            # Can't think of a use case when we'd do these two in a row, but
-            # since it's just change a if for a while, why not leave it there?
             for dialog in request.dialog_list:
                 if dialog.is_fulfilled:
                     should_process = self._check_dialog_fulfilled(dialog)
