@@ -4,6 +4,8 @@ They tell the file handler all info that it needs and get the results back up.
 Different commands require different initializations, please do pay attention.
 """
 
+from typing import Dict, Any
+
 
 class Command:
     """
@@ -13,9 +15,9 @@ class Command:
     file_identifier : str : file id or path
     result : Any : result of the command, to be updated by the file handler
     """
-    file_identifier = ''
+    file_identifier = {}
     result = None
-    def __init__(self, file_identifier: str) -> None:
+    def __init__(self, file_identifier: Dict[str, Any]) -> None:
         self.file_identifier = file_identifier
 
 
@@ -25,10 +27,7 @@ class CreateCommand(Command):
     new_file_path contains path to file to be added.
     result contains True for success, False for fail.
     """
-    new_file_path = ''
-    def __init__(self, file_identifier: str, file_path: str) -> None:
-        super().__init__(file_identifier)
-        self.new_file_path = file_path
+    pass
 
 
 class ReadCommand(Command):
@@ -45,8 +44,7 @@ class UpdateCommand(CreateCommand):
     updated and new_file_path contains path of file to take the place.
     result contains True for success and False for fail.
     """
-    def __init__(self, file_identifier: str, file_path: str) -> None:
-        super().__init__(file_identifier, file_path)
+    pass
 
 
 class DeleteCommand(Command):

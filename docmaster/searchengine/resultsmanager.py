@@ -44,13 +44,7 @@ class ResultsManager:
         """
         if not results:
             self.handle_error(
-                "Could not reach saved file."
-                + " Make sure that you have permissions to do so.")
-        elif results == True:
-            self.request.results = True
-        elif os.path.exists(results):
-            self.request.results = results
+            "Could not reach saved file."
+            + " Make sure that you have permissions to do so.")
         else:
-            self.handle_error(
-                "Got successful result, but not sure what to do with it:\n"
-                + str(results))
+            self.req.results = results

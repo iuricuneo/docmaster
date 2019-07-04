@@ -21,10 +21,12 @@ class Speaker:
     def __init__(self, request):
         self.request = request
         dialog = self.request.get_dialog()
-        if request.results is not None:
-            self.handle_show_action()
-        elif self.request.action is actions.AskAction:
+        if self.request.action is actions.AskAction:
             self.handle_ask_action(dialog)
+        elif self.request.action is actions.TalkAction:
+            self.handle_talk_action(dialog)
+        elif request.results is not None:
+            self.handle_show_action()
         else:
             self.handle_talk_action(dialog)
 
@@ -66,7 +68,7 @@ class Speaker:
                 answer = input(line_to_print).lower()
                 if answer == '' and dialog_text.pref is not None:
                     answer = dialog_text.pref.lower()
-                print(bytes(answer))
+                print(answer)
         else:
             line_to_print = (
                 "Please say something to help me...\n" + line_to_print)
@@ -81,7 +83,7 @@ class Speaker:
         :dialog: str
         """
         if not self.request.flags['error']:
-            os.system('cat ' + self.request.results)
+            os.system('cat ' + self.request.results["orig_name"])
         else:
             print("Error found processing request.")
             print(self.request.results)

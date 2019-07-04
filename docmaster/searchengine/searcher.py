@@ -18,10 +18,7 @@ import searchengine.filerequirer as filereq
 
 import exceptions as exc
 
-PATH_TO_ENTRIES_DB = os.get_cwd() + "/entriesdb.json"
-
-
-
+PATH_TO_ENTRIES_DB = os.path.join(os.getcwd(), "entriesdb.json")
 
 
 class Searcher:
@@ -56,6 +53,7 @@ class Searcher:
 
         Action of the request will be updated when back on request handler.
         """
+        global PATH_TO_ENTRIES_DB
         entries_table = sth.SearchTableHandler(PATH_TO_ENTRIES_DB)
         tmp_results = entries_table.query(self.request.filename)
         if self.request.action == actions.SearchAction:
@@ -77,17 +75,14 @@ class Searcher:
                         self.results_manager.handle_error(
                             "File already entried, expected non-existing file.")
                         break
-                    elif step.endswith('results') and not len(tmp_results):
+                    elif step.endswith('=results') and not len(tmp_results):
                         self.results_manager.handle_error(
                             "File search returned nothing, expected results.")
                         break
-                    else:
-                        raise NotImplementedError(
-                            "Unexpected processing option: " + step)
                 elif step == 'characteristics':
-                    tmp_results = self._get_file_characts()
+                    self._handle_results(self._get_file_characts())
                 elif step == "save":
-                    entries_table.add(tmp_results)
+                    entries_table.add(self.request.results)
                 elif step == "require":
                     # FIXME: check that dict has ID keyword here
                     tmp_results = filereq.FileRequirer().process_request(
@@ -95,7 +90,7 @@ class Searcher:
                 elif step == "result":
                     self._handle_results(tmp_results)
                 elif step == "update":
-                    entries_table.update(tmp_results)
+                    entries_table.update(tmp_results[0])
                 elif step == "delete":
                     try:
                         entries_table.delete(tmp_results[0]["id"])

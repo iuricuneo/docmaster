@@ -15,7 +15,7 @@ class SearchTableHandler:
     """Class to handle the local database that stores the file entries, not
     the files per se."""
     def __init__(self, path_to_db="./filedata.json"):
-        self.db = tinydb.TinyDB(path_to_db, cache_size=2)
+        self.db = tinydb.TinyDB(path_to_db)
         self.next_id = len(self.db)
 
     def add(self, characts_dict: Dict[str, Any]) -> None:
@@ -68,7 +68,7 @@ class SearchTableHandler:
 
         if removed < 1:  # Covers results = 0
             raise exc.FileDataNotFoundError("Could not delete file.")
-        elif removed > 1 and results == 1:
+        elif removed > 1:
             print("this must never happen... im sorry if it did [remove]")
             # *gives up life*
 
@@ -91,9 +91,9 @@ class SearchTableHandler:
                 "Given entry got too many results.")
         results = self.db.update(
             updated_entry, (entry.id == updated_entry['id']))
-        if results < 1:  # Covers results = 0
+        if len(results) < 1:  # Covers results = 0
             raise exc.FileDataNotFoundError("Could not update file.")
-        elif results >= 1:
+        elif len(results) > 1:
             print("this must never happen... im sorry if it did [update]")
             # *gives up life*
 

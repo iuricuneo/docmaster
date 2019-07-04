@@ -37,12 +37,10 @@ class FileRequirer:
         req_type = type(self.req)
 
         if req_type == ureq.CreateEntryRequest:
-            return commands.CreateCommand(self.req.actions.file_id)
+            return commands.CreateCommand(self.req.results)
         elif req_type == ureq.ReadEntryRequest:
-            return commands.ReadCommand(self.req.actions.file_id)
+            return commands.ReadCommand(self.req.results)
         elif req_type == ureq.UpdateEntryRequest:
-            return commands.UpdateCommand(
-                self.req.actions.file_id,
-                self.req.actions.file_path)
+            return commands.UpdateCommand(self.req.results)
         elif req_type == ureq.DeleteEntryRequest:
-            return commands.DeleteCommand(self.req_actions.file_id)
+            return commands.DeleteCommand(self.req.results)

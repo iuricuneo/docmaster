@@ -90,10 +90,6 @@ class ReadEntryRequest(Request):
         super().__init__(filename, options)
         self.actions = [act.SearchAction, act.ShowAction]
         self.add_dialog(dialogues.ShowResultsDialog())
-        self.process_steps = [
-            "search-expect=results",
-            "require",
-            "result"]
 
 
 class UpdateEntryRequest(Request):
