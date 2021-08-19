@@ -1,0 +1,16 @@
+searchengine
+	searchtablehandler - chars dict, results list str
+	resultsmanager - results list str, none (updates request)
+		request
+		[error handler w/ strategy pattern]
+	characteristicshandler - file path str, chars dict
+	filerequirer - none (request), none
+		request
+		commander - type(request) + results dict, command
+			Icommand - 
+				C
+				R
+				U
+				D
+		[filehandler - command, file path str]
+

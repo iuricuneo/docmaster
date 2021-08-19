@@ -1,0 +1,23 @@
+main
+- user interface
+-- speaker
+--- Idialogue
+---- confirmlargerequest
+---- confirmdelete
+---- refinesearch
+---- showresults
+---- askdisplaymethod
+-- listener
+--- Irequest
+---- createrequest
+---- readrequest
+---- updaterequest
+---- deleterequest
+--- Iarction
+---- show
+---- search
+---- ask
+---- talk
+-- requesthandler
+--- searchengine
+

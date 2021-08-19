@@ -1,0 +1,16 @@
+get characteristics of file
+	name
+	extension
+	original name
+	entry date
+	(field for) read last
+	(field for) updated last
+save characteristics
+create save file command
+sends fh the command
+look for closest match
+create file read command
+generate search results
+show users file characteristics to ask for confirmation
+create file delete command
+update characteristics

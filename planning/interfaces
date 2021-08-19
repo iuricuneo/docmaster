@@ -1,0 +1,17 @@
+user/interpreter
+- open files
+- print data to terminal
+- read terminal commands
+
+interpreter/search engine
+- command pattern
+- returns results (paths, search results, file names, metadata)
+
+search engine/file handler
+- command pattern
+- returns updates on the requests/commands
+
+file handler/file(bzw. storage)
+- built-in unix commands like mv, cp, rm plus compression commands
+
+

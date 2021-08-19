@@ -1,0 +1,13 @@
+search library for handling local database
+finish implementation of searchengine
+fix interpreter to expect two files with update command
+test functioning of interpreter with searchengine
+fix doxygen comments
+implement filehandler
+test functioning of the whole system
+implement unit tests
+find solution to install software as a debian package professionally
+implement solution
+test solution
+implement issues/features planned (e.g. error upon unexpected option, cache)
+

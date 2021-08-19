@@ -1,0 +1,137 @@
+How to use it
+- terminal
+
+How is it different from a regular directory-system
+- faster
+- easier to use
+- no looking through several folders nor files
+- efficient search
+- require less memory
+
+What else can it do
+- store all kinds of files
+- intelligent search
+- have different profiles
+- change through profiles easily and consistently
+- not always require which user
+- allow user to edit settings
+- edit verbose levels
+- distinguish how close two text inputs are, in numbers
+- protect read/write from itself (robustness) through an internal global lock
+- allows user to just copy files, it could be just a backup
+
+How will these functions be integrated in the user interface
+- through short, straighforward dialogues with the user
+
+how many users
+- several
+- unlimited
+
+how will the search work
+- write words
+- be given few to one single result
+- if no perfect matches, always at least a question to closest match
+- allow easy search through different topics, like date or keywords, etc
+
+will the search be user-based
+- definetly
+
+will the files be user-based
+- yes
+- possibility of setting an account as child of another
+
+how many queries per minute
+- as many as possible
+
+should i worry about spikes in use
+- yes, specially regarding:
+- cache (specially with multiple users)
+- a bunch of documents being saved at once
+- a bunch of documents being restored at once
+
+can more than one document be saved or restored at once
+- saved yes, should receive directory and look into it 
+- option for recursiveness in directories
+- warning for too many files
+- parameter to update file warning settings
+- if one search reaches more than one result, the option of opening more should be given
+
+will it be read heavy or write heavy
+- search will be read heavy
+- save and restoration will be write heavy
+
+should I look into a database system
+- probably, depends on strategy for storage
+
+how secure should the data be
+- option of backup, otherwise, nothing
+
+how important is security
+- not much, but
+- an option of doing backup would be nice
+- a reminder of the backup would be nice too
+
+should I keep all functions together in one app or should I split them
+- backup could be kept separate
+
+can it be implemented in a way that the commands arent too time consuming
+- definetly
+- maybe run things in a deamon
+
+what is the minimal application
+- save one file
+- restore one file
+- name of the file must be entered, at least a similar name
+
+how to expand from it
+- improve functions
+- add options
+
+what will be logged
+- user commands
+- search results
+- results of file saving and restoring
+- errors
+- warnings
+- internal states
+
+how will it be logged
+- with errors and warning tags
+- plain text
+- timestamped
+- rotating logs
+
+what is the caching strategy
+- keep a specific, parametrized size of memory for cache
+- keep most frequently opened files there
+- look into cache first before looking into others
+- keep search terms that led to opening the files
+- look into search terms and compare them to the input
+
+should it run in a server
+- it could have a deamon that is a server
+- a script called when the terminal runs would then send requests to the server
+- requests would be answered fast since its localhost
+
+what kind of failures could be expected
+- losing all files
+- something going corrupted
+- user sends wrong request
+- run out of memory
+- cache overflow
+
+how to handle them
+- option for backup
+- as robust as possible
+- confirm strong actions
+- allow files to have a ""qos""/priority/rank (simple names -> important file)
+- watch for memory usage and issue low storage left warning, parametrized
+
+how to modularize the idea
+- interpreter
+- backup
+- cache
+- search engine
+- file handler
+- maybe a server or deamon
+

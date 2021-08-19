@@ -1,5 +1,4 @@
 # Custom ignores
-planning/
 *.json
 
 # Byte-compiled / optimized / DLL files

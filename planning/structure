@@ -1,0 +1,22 @@
+Full:
+
+interpreter -> backup
+    |		 |
+   \/	         |
+(server/deamon)  |
+    |		 |
+   \/		\/
+search engine -> file handler
+    |
+   \/
+  cache
+
+Minimal:
+
+interpreter
+     |
+    \/
+search engine
+     |
+    \/
+file handler
